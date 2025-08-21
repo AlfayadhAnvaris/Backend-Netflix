@@ -1,6 +1,7 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import path from "path";
+import mongoose from "mongoose";
 
 import authRoutes from "./routes/auth.route.js";
 import movieRoutes from "./routes/movie.route.js";
@@ -35,5 +36,5 @@ if (ENV_VARS.NODE_ENV === "production") {
 
 app.listen(PORT, () => {
 	console.log("Server started at http://localhost:" + PORT);
-	connectDB();
+	mongoose.connect(process.env.MONGO_URI);
 });
